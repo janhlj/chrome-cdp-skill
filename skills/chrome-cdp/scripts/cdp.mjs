@@ -25,13 +25,33 @@ const PAGES_CACHE = '/tmp/cdp-pages.json';
 function sockPath(targetId) { return `${SOCK_PREFIX}${targetId}.sock`; }
 
 function getWsUrl() {
-  const candidates = [
-    resolve(homedir(), 'Library/Application Support/Google/Chrome/DevToolsActivePort'),
-    resolve(homedir(), '.config/google-chrome/DevToolsActivePort'),
+  const home = homedir();
+  // macOS: ~/Library/Application Support/<name>/DevToolsActivePort
+  const macBrowsers = [
+    'Google/Chrome', 'Google/Chrome Beta', 'Google/Chrome for Testing',
+    'Chromium', 'BraveSoftware/Brave-Browser', 'Microsoft Edge',
   ];
-  const portFile = candidates.find(path => existsSync(path));
-  if (!portFile) throw new Error(`Could not find DevToolsActivePort file in: ${candidates.join(', ')}`);
+  // Linux: ~/.config/<name>/DevToolsActivePort
+  const linuxBrowsers = [
+    'google-chrome', 'google-chrome-beta', 'chromium',
+    'vivaldi', 'vivaldi-snapshot',
+    'BraveSoftware/Brave-Browser', 'microsoft-edge',
+  ];
+  const candidates = [
+    process.env.CDP_PORT_FILE,
+    ...macBrowsers.flatMap(b => [
+      resolve(home, 'Library/Application Support', b, 'DevToolsActivePort'),
+      resolve(home, 'Library/Application Support', b, 'Default/DevToolsActivePort'),
+    ]),
+    ...linuxBrowsers.flatMap(b => [
+      resolve(home, '.config', b, 'DevToolsActivePort'),
+      resolve(home, '.config', b, 'Default/DevToolsActivePort'),
+    ]),
+  ].filter(Boolean);
+  const portFile = candidates.find(p => existsSync(p));
+  if (!portFile) throw new Error('No DevToolsActivePort found. Enable remote debugging at chrome://inspect/#remote-debugging');
   const lines = readFileSync(portFile, 'utf8').trim().split('\n');
+  if (lines.length < 2 || !lines[0] || !lines[1]) throw new Error(`Invalid DevToolsActivePort file: ${portFile}`);
   return `ws://127.0.0.1:${lines[0]}${lines[1]}`;
 }
 
