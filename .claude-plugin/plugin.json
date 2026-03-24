@@ -9,6 +9,5 @@
   "homepage": "https://github.com/pasky/chrome-cdp-skill",
   "repository": "https://github.com/pasky/chrome-cdp-skill",
   "license": "MIT",
-  "keywords": ["chrome", "browser", "automation", "devtools", "cdp"],
-  "skills": ["skills/chrome-cdp"]
+  "keywords": ["chrome", "browser", "automation", "devtools", "cdp"]
 }
