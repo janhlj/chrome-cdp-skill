@@ -1,0 +1,19 @@
+{
+  "name": "chrome-cdp-local",
+  "owner": {
+    "name": "janhlj",
+    "email": "janhlj@users.noreply.github.com"
+  },
+  "metadata": {
+    "description": "Chrome DevTools Protocol plugin - access live Chrome sessions",
+    "version": "1.0.1"
+  },
+  "plugins": [
+    {
+      "name": "chrome-cdp",
+      "source": "./",
+      "description": "Give your AI agent access to your live Chrome session via CDP",
+      "version": "1.0.1"
+    }
+  ]
+}

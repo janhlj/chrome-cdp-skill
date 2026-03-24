@@ -1,0 +1,14 @@
+{
+  "name": "chrome-cdp",
+  "version": "1.0.1",
+  "description": "Chrome DevTools Protocol CLI - Give your AI agent access to your live Chrome session via CDP",
+  "author": {
+    "name": "Ondrej Pasky",
+    "email": "ondrej@pasky.nl"
+  },
+  "homepage": "https://github.com/pasky/chrome-cdp-skill",
+  "repository": "https://github.com/pasky/chrome-cdp-skill",
+  "license": "MIT",
+  "keywords": ["chrome", "browser", "automation", "devtools", "cdp"],
+  "skills": ["./skills/chrome-cdp"]
+}
