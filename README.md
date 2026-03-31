@@ -1,4 +1,4 @@
-# chrome-cdp
+# cdp (Chrome DevTools Protocol)
 
 Let your AI agent see and interact with your **live Chrome session** — the tabs you already have open, your logged-in accounts, your current page state. No browser automation framework, no separate browser instance, no re-login.
 
@@ -22,7 +22,7 @@ pi install git:github.com/pasky/chrome-cdp-skill@v1.0.1
 
 ### For other agents (Amp, Claude Code, Cursor, etc.)
 
-Clone or copy the `skills/chrome-cdp/` directory wherever your agent loads skills or context from. The only runtime dependency is **Node.js 22+** — no npm install needed.
+Clone or copy the `skills/cdp/` directory wherever your agent loads skills or context from. The only runtime dependency is **Node.js 22+** — no npm install needed.
 
 ### Enable remote debugging in Chrome
 
